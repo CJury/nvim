@@ -37,3 +37,7 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- load init.vim
+local vimrc = vim.fn.stdpath("config") .. "/_init.vim"
+vim.cmd.source(vimrc)
