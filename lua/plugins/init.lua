@@ -81,4 +81,22 @@ return {
     'tikhomirov/vim-glsl',
     event = "BufReadPre",
   },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "julianolf/nvim-dap-lldb"},
+    cmd = { "DapNew" },
+    config = function()
+      require("dapui").setup()
+      vim.keymap.set("n", "<Leader>dt", ":lua require(\"dapui\").toggle()<CR>")
+      vim.keymap.set("n", "<Leader>dc", ":DapContinue<CR>")
+      vim.keymap.set("n", "<Leader>db", ":DapToggleBreakpoint<CR>")
+    end
+  },
+  {
+    "julianolf/nvim-dap-lldb",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      require("dap-lldb").setup()
+    end
+  }
 }
