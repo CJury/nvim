@@ -48,3 +48,6 @@ vim.cmd("highlight ExtraWhitespace ctermbg=red guibg=red")
 vim.cmd("match ExtraWhitespace /\\s\\+$/")
 
 vim.cmd("set list")
+-- load init.vim
+local vimrc = vim.fn.stdpath("config") .. "/_init.vim"
+vim.cmd.source(vimrc)
