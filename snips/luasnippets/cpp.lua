@@ -11,7 +11,15 @@ local rep = require("luasnip.extras").rep
 
 local get_include_guard_name = function(args, parent)
   local name = vim.fn.expand("%:r")
-  name = name:gsub("%/","_"):gsub("include_",""):upper()
+  local ext = vim.fn.expand("%:e")
+  local header
+  if (ext == "h") then
+    header = "_C_HEADER"
+  else
+    header = "HEADER"
+  end
+
+  name = name:gsub("%/","_"):gsub("-","_"):gsub("include_",""):upper()..header
   return sn(nil, i(1, name))
 end
 
