@@ -1,5 +1,3 @@
--- Place this in ${HOME}/.config/nvim/LuaSnip/all.lua
---
 local ls = require("luasnip")
 local s = ls.snippet
 local sn = ls.snippet_node
