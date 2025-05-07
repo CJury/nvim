@@ -23,6 +23,12 @@ local get_include_guard_name = function(args, parent)
   return sn(nil, i(1, name))
 end
 
+local get_file_relative_path = function(args, parent)
+  local name = vim.fn.expand("%")
+  name = name:gsub("include/","")
+  return sn(nil, i(1, name))
+end
+
 local get_visual = function(args, parent)
   if (#parent.snippet.env.LS_SELECT_RAW > 0) then
     return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
@@ -32,10 +38,17 @@ local get_visual = function(args, parent)
 end
 
 return {
-  s({trig = "tii", dscr = "Expands 'tii' into LaTeX's textit{} command."},
-    fmta("\\textit{<>}",
+  s({trig = "/**", dscr = "File header comment"},
+    fmta(
+      [[
+      /**
+       * @file <>
+       * @brief <>
+       */
+      <>
+      ]],
       {
-        d(1, get_visual),
+        d(1, get_file_relative_path), i(2), i(3)
       }
     )
   ),
